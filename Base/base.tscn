@@ -8,7 +8,7 @@ albedo_color = Color(0.886275, 0, 0.0196078, 1)
 [node name="Base" type="Node3D" groups=["base"]]
 script = ExtResource("1_l44r1")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+[node name="Model" type="CSGCylinder3D" parent="."]
 radius = 2.0
 height = 4.0
 sides = 32
@@ -17,7 +17,7 @@ material = SubResource("StandardMaterial3D_us0s8")
 [node name="HealthLabel" type="Label3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 billboard = 1
-text = "5
-"
+modulate = Color(0.886275, 0, 0.0196078, 1)
+text = "10"
 font_size = 500
 outline_size = 100

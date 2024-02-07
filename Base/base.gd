@@ -10,7 +10,10 @@ extends Node3D
 var health: int:
 	set(val):
 		health = val
-		health_label.text = str(health)
+		
+		health_label.modulate = Color.RED.lerp(Color.WHITE, float(health) / max_health)
+		health_label.text = str(health) + "/" + str(max_health)
+		
 		if (health <= 0): get_tree().reload_current_scene()
 
 
