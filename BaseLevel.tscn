@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://drh3kj7778ibt"]
+[gd_scene load_steps=10 format=3 uid="uid://drh3kj7778ibt"]
 
+[ext_resource type="PackedScene" uid="uid://b30dvd4ye2sv3" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_33bfw"]
 [ext_resource type="MeshLibrary" uid="uid://cesoulgt1yff5" path="res://MeshLibraries/SpaceLibrary.tres" id="1_j15wq"]
 [ext_resource type="PackedScene" uid="uid://butwu35p7bjro" path="res://Enemy/enemy.tscn" id="2_wgbja"]
 [ext_resource type="PackedScene" uid="uid://bfb4k2ep1dvtl" path="res://Base/base.tscn" id="3_jojtq"]
@@ -41,7 +42,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
 size = Vector3(100, 2, 100)
 material = SubResource("StandardMaterial3D_jvajy")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="RayPickerCamera" parent="." instance=ExtResource("1_33bfw")]
 transform = Transform3D(1, 0, 0, 0, 0.422618, 0.906308, 0, -0.906308, 0.422618, 0, 18, 12)
 
 [node name="GridMap" type="GridMap" parent="."]
@@ -97,5 +98,22 @@ path_joined = false
 [node name="Enemy" parent="Path3D" instance=ExtResource("2_wgbja")]
 transform = Transform3D(0.999994, 0, 0, 0, 1, 0, 0, 0, 0.999994, -14, 0, 14)
 
+[node name="Enemy2" parent="Path3D" instance=ExtResource("2_wgbja")]
+transform = Transform3D(0.998757, 0, 0.0497227, 0, 1, 0, -0.0497227, 0, 0.998757, -14.3452, 0, 9.01226)
+progress = 5.0
+
+[node name="Enemy3" parent="Path3D" instance=ExtResource("2_wgbja")]
+transform = Transform3D(0.998561, 0, -0.0535071, 0, 1, 0, 0.0535071, 0, 0.998561, -14.4087, 0, 4.01436)
+progress = 10.0
+
+[node name="Enemy4" parent="Path3D" instance=ExtResource("2_wgbja")]
+transform = Transform3D(0.0692737, 0, -0.997591, 0, 1, 0, 0.997591, 0, 0.0692737, -11.2097, 0, 1.29088)
+progress = 15.0
+
+[node name="Enemy5" parent="Path3D" instance=ExtResource("2_wgbja")]
+transform = Transform3D(-0.46583, 0, -0.884867, 0, 1, 0, 0.884867, 0, -0.46583, -6.27649, 0, 1.80655)
+progress = 20.0
+
 [node name="Base" parent="." instance=ExtResource("3_jojtq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, 6)
+max_health = 5
