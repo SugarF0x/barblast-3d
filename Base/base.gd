@@ -11,6 +11,7 @@ var health: int:
 	set(val):
 		health = val
 		health_label.text = str(health)
+		if (health <= 0): get_tree().reload_current_scene()
 
 
 func _ready():
