@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://drh3kj7778ibt"]
+[gd_scene load_steps=12 format=3 uid="uid://drh3kj7778ibt"]
 
 [ext_resource type="PackedScene" uid="uid://b30dvd4ye2sv3" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_33bfw"]
 [ext_resource type="MeshLibrary" uid="uid://cesoulgt1yff5" path="res://MeshLibraries/SpaceLibrary.tres" id="1_j15wq"]
 [ext_resource type="PackedScene" uid="uid://butwu35p7bjro" path="res://Enemy/enemy.tscn" id="2_wgbja"]
+[ext_resource type="Script" path="res://TurretManager.gd" id="3_4nxnr"]
 [ext_resource type="PackedScene" uid="uid://bfb4k2ep1dvtl" path="res://Base/base.tscn" id="3_jojtq"]
+[ext_resource type="PackedScene" uid="uid://dlmltvgusbij4" path="res://Turret/turret.tscn" id="4_enpy5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwvmm"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -53,6 +55,10 @@ cell_center_y = false
 data = {
 "cells": PackedInt32Array(65531, 65534, 0, 65531, 65535, 0, 65531, 0, 0, 65531, 1, 0, 65531, 2, 0, 65532, 65534, 0, 65533, 65534, 0, 65533, 2, 0, 65534, 65534, 0, 65534, 2, 0, 65535, 65534, 0, 65535, 2, 0, 0, 65534, 0, 0, 2, 0, 1, 65534, 0, 1, 2, 0, 2, 65534, 0, 2, 2, 0, 3, 65534, 0, 3, 2, 0, 4, 65534, 0, 4, 65535, 0, 4, 0, 0, 4, 2, 0, 2, 1, 0, 2, 0, 0, 1, 0, 0, 1, 1, 0, 65535, 0, 0, 65535, 65535, 0, 65534, 65535, 0, 65533, 65535, 0, 65532, 65535, 0, 65533, 1, 0)
 }
+
+[node name="TurretManager" type="Node3D" parent="."]
+script = ExtResource("3_4nxnr")
+turret_scene = ExtResource("4_enpy5")
 
 [node name="Path3D" type="Path3D" parent="."]
 curve = SubResource("Curve3D_yvn7s")

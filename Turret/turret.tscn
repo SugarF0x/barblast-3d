@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://dlmltvgusbij4"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_j646k"]
+height = 0.6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_3gby5"]
+top_radius = 0.6
+bottom_radius = 0.6
+height = 0.6
+
+[sub_resource type="BoxMesh" id="BoxMesh_5o3kg"]
+size = Vector3(0.8, 0.4, 0.4)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gdfwg"]
+size = Vector3(0.4, 0.2, 0.4)
+
+[node name="Turret" type="Node3D"]
+
+[node name="Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("CylinderMesh_j646k")
+
+[node name="Top" type="MeshInstance3D" parent="Base"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+mesh = SubResource("CylinderMesh_3gby5")
+
+[node name="Visor" type="MeshInstance3D" parent="Base/Top"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
+mesh = SubResource("BoxMesh_5o3kg")
+
+[node name="Barrel" type="MeshInstance3D" parent="Base/Top/Visor"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
+mesh = SubResource("BoxMesh_gdfwg")
