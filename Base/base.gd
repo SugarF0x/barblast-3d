@@ -2,24 +2,20 @@ extends Node3D
 
 
 @onready var health_label: Label3D = $HealthLabel
+@onready var health_component: HealthComponent = $HealthComponent
 
 
-@export var max_health := 10
+func _ready() -> void:
+	sync_label()
 
 
-var health: int:
-	set(val):
-		health = val
-		
-		health_label.modulate = Color.RED.lerp(Color.WHITE, float(health) / max_health)
-		health_label.text = str(health) + "/" + str(max_health)
-		
-		if (health <= 0): get_tree().reload_current_scene()
+func sync_label():
+	health_label.modulate = Color.RED.lerp(Color.WHITE, float(health_component.health) / health_component.max_health)
+	health_label.text = str(health_component.health) + "/" + str(health_component.max_health)
+
+func take_damage(value: int) -> void: 
+	health_component.damage(value)
+	sync_label()
 
 
-func _ready():
-	health = max_health
-
-
-func take_damage(value: int) -> void:
-	health -= value
+func _on_health_component_death() -> void: get_tree().reload_current_scene()

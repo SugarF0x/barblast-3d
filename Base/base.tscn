@@ -1,12 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfb4k2ep1dvtl"]
+[gd_scene load_steps=4 format=3 uid="uid://bfb4k2ep1dvtl"]
 
 [ext_resource type="Script" path="res://Base/base.gd" id="1_l44r1"]
+[ext_resource type="PackedScene" uid="uid://b7eurym5yvwbn" path="res://components/HealthComponent.tscn" id="2_jll3i"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_us0s8"]
 albedo_color = Color(0.886275, 0, 0.0196078, 1)
 
 [node name="Base" type="Node3D" groups=["base"]]
 script = ExtResource("1_l44r1")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_jll3i")]
+max_health = 5
 
 [node name="Model" type="CSGCylinder3D" parent="."]
 radius = 2.0
@@ -21,3 +25,5 @@ modulate = Color(0.886275, 0, 0.0196078, 1)
 text = "10"
 font_size = 500
 outline_size = 100
+
+[connection signal="death" from="HealthComponent" to="." method="_on_health_component_death"]

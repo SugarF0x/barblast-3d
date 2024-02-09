@@ -125,4 +125,3 @@ progress = 20.0
 
 [node name="Base" parent="." instance=ExtResource("3_jojtq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, 6)
-max_health = 5
