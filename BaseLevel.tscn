@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://drh3kj7778ibt"]
+[gd_scene load_steps=15 format=3 uid="uid://drh3kj7778ibt"]
 
 [ext_resource type="PackedScene" uid="uid://b30dvd4ye2sv3" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_33bfw"]
 [ext_resource type="MeshLibrary" uid="uid://cesoulgt1yff5" path="res://MeshLibraries/SpaceLibrary.tres" id="1_j15wq"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://bfb4k2ep1dvtl" path="res://Base/base.tscn" id="3_jojtq"]
 [ext_resource type="PackedScene" uid="uid://dlmltvgusbij4" path="res://Turret/turret.tscn" id="4_enpy5"]
 [ext_resource type="Script" path="res://EnemyPath.gd" id="5_885ug"]
+[ext_resource type="Script" path="res://Bank.gd" id="8_d6424"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwvmm"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -30,6 +31,11 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 9
+
+[sub_resource type="LabelSettings" id="LabelSettings_s13n6"]
+font_size = 64
+outline_size = 16
+outline_color = Color(0, 0, 0, 1)
 
 [node name="BaseLevel" type="Node3D"]
 
@@ -113,5 +119,26 @@ autostart = true
 
 [node name="Base" parent="." instance=ExtResource("3_jojtq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, 6)
+
+[node name="Bank" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 8
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+script = ExtResource("8_d6424")
+
+[node name="GoldCounter" type="Label" parent="Bank"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Sample Text"
+label_settings = SubResource("LabelSettings_s13n6")
 
 [connection signal="timeout" from="EnemyPath/EnemySpawnTimer" to="EnemyPath" method="_on_enemy_spawn_timer_timeout"]
