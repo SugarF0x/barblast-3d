@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://butwu35p7bjro"]
+[gd_scene load_steps=5 format=3 uid="uid://butwu35p7bjro"]
 
 [ext_resource type="Script" path="res://Enemy/enemy.gd" id="1_npdv6"]
+[ext_resource type="PackedScene" uid="uid://b7eurym5yvwbn" path="res://components/HealthComponent.tscn" id="2_uyfef"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_fg4r4"]
 radius = 1.0
@@ -15,6 +16,9 @@ transform = Transform3D(0.999994, 0, 0, 0, 1, 0, 0, 0, 0.999994, 0, 0, 0)
 loop = false
 script = ExtResource("1_npdv6")
 
+[node name="HealthComponent" parent="." instance=ExtResource("2_uyfef")]
+max_health = 2
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 mesh = SubResource("CapsuleMesh_fg4r4")
@@ -24,3 +28,5 @@ mesh = SubResource("CapsuleMesh_fg4r4")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 shape = SubResource("CapsuleShape3D_7c1q6")
+
+[connection signal="death" from="HealthComponent" to="." method="_on_health_component_death"]
