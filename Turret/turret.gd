@@ -11,7 +11,10 @@ var enemy_path: Path3D
 
 
 func _physics_process(delta: float) -> void:
-	look_at(enemy_path.get_children().back().global_position, Vector3.UP, true)
+	var target = find_best_target()
+	if not target: return
+	
+	look_at(target.global_position, Vector3.UP, true)
 
 
 func fire():
@@ -19,6 +22,11 @@ func fire():
 	add_child(projectile)
 	projectile.global_position = barrel.global_position
 	projectile.direction = global_transform.basis.z
+
+
+func find_best_target() -> PathFollow3D:
+	var enemies = enemy_path.get_children().filter(func(child): return child is PathFollow3D)
+	return enemies.reduce(func(acc: PathFollow3D, val: PathFollow3D): return val if acc.progress_ratio < val.progress_ratio else acc)
 
 
 func _on_fire_rate_timer_timeout() -> void: fire()
