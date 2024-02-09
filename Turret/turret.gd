@@ -2,6 +2,7 @@ extends Node3D
 
 
 @export var projectile_scene: PackedScene
+@export_range(1,10) var range := 10
 
 
 @onready var barrel: MeshInstance3D = %Barrel
@@ -26,9 +27,8 @@ func fire():
 	projectile.global_position = barrel.global_position
 	projectile.direction = global_transform.basis.z
 
-
 func find_best_target() -> void:
-	var enemies = enemy_path.get_children().filter(func(child): return child is PathFollow3D)
+	var enemies = enemy_path.get_children().filter(func(child): return child is PathFollow3D and global_position.distance_to(child.global_position) <= range)
 	target = enemies.reduce(func(acc: PathFollow3D, val: PathFollow3D): return val if acc.progress_ratio < val.progress_ratio else acc)
 
 
