@@ -1,4 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlmltvgusbij4"]
+[gd_scene load_steps=6 format=3 uid="uid://dlmltvgusbij4"]
+
+[ext_resource type="PackedScene" uid="uid://c7jn1aea5mdfe" path="res://Turret/projectile.tscn" id="1_ai42u"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_j646k"]
 height = 0.6
@@ -31,3 +33,5 @@ mesh = SubResource("BoxMesh_5o3kg")
 [node name="Barrel" type="MeshInstance3D" parent="Base/Top/Visor"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
 mesh = SubResource("BoxMesh_gdfwg")
+
+[node name="Projectile" parent="." instance=ExtResource("1_ai42u")]
