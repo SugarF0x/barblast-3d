@@ -1,7 +1,7 @@
 extends PathFollow3D
 
 
-@export_range(1.0,10.0) var speed = 5.0
+@export_range(1.0,10.0) var speed := 5.0
 
 
 @onready var base = get_tree().get_first_node_in_group("base")

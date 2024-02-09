@@ -4,7 +4,7 @@ extends Node3D
 @onready var health_label: Label3D = $HealthLabel
 
 
-@export var max_health: int = 10
+@export var max_health := 10
 
 
 var health: int:
