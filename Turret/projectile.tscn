@@ -19,3 +19,10 @@ mesh = SubResource("SphereMesh_18nkp")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_8mds5")
+
+[node name="TTLTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="TTLTimer" to="." method="_on_ttl_timer_timeout"]
