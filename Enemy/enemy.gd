@@ -6,6 +6,7 @@ extends PathFollow3D
 
 @onready var base = get_tree().get_first_node_in_group("base")
 @onready var health_component: HealthComponent = $HealthComponent
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 func _process(delta: float) -> void:
@@ -18,6 +19,8 @@ func attack():
 	queue_free()
 
 
-func take_damage(value: int): health_component.damage(value)
+func take_damage(value: int):
+	animation_player.play("DamageFlash")
+	health_component.damage(value)
 
 func _on_health_component_death() -> void: queue_free()
