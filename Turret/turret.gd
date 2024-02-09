@@ -6,6 +6,7 @@ extends Node3D
 
 
 @onready var barrel: MeshInstance3D = %Barrel
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 
 var enemy_path: Path3D
@@ -22,6 +23,7 @@ func _physics_process(delta: float) -> void:
 func fire():
 	if not target: return
 	
+	animation_player.play("Fire")
 	var projectile = projectile_scene.instantiate()
 	add_child(projectile)
 	projectile.global_position = barrel.global_position

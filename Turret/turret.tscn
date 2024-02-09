@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://dlmltvgusbij4"]
+[gd_scene load_steps=10 format=3 uid="uid://dlmltvgusbij4"]
 
 [ext_resource type="PackedScene" uid="uid://c7jn1aea5mdfe" path="res://Turret/projectile.tscn" id="1_ai42u"]
 [ext_resource type="Script" path="res://Turret/turret.gd" id="1_fhnta"]
@@ -16,6 +16,43 @@ size = Vector3(0.8, 0.4, 0.4)
 
 [sub_resource type="BoxMesh" id="BoxMesh_gdfwg"]
 size = Vector3(0.4, 0.2, 0.4)
+
+[sub_resource type="Animation" id="Animation_6hfgg"]
+resource_name = "Fire"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base/Top/Visor/Barrel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.6),
+"transitions": PackedFloat32Array(0.189465, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0.4), Vector3(0, 0, 0.1), Vector3(0, 0, 0.4)]
+}
+
+[sub_resource type="Animation" id="Animation_22uqc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Base/Top/Visor/Barrel:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0.4)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kmobn"]
+_data = {
+"Fire": SubResource("Animation_6hfgg"),
+"RESET": SubResource("Animation_22uqc")
+}
 
 [node name="Turret" type="Node3D"]
 script = ExtResource("1_fhnta")
@@ -40,5 +77,10 @@ mesh = SubResource("BoxMesh_gdfwg")
 
 [node name="FireRateTimer" type="Timer" parent="."]
 autostart = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_kmobn")
+}
 
 [connection signal="timeout" from="FireRateTimer" to="." method="_on_fire_rate_timer_timeout"]
