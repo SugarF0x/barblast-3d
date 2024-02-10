@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://drh3kj7778ibt"]
+[gd_scene load_steps=17 format=3 uid="uid://drh3kj7778ibt"]
 
 [ext_resource type="PackedScene" uid="uid://b30dvd4ye2sv3" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_33bfw"]
 [ext_resource type="PackedScene" uid="uid://b4ykk1i4fn341" path="res://DifficultyManager/difficulty_manager.tscn" id="1_gac54"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dlmltvgusbij4" path="res://Turret/turret.tscn" id="4_enpy5"]
 [ext_resource type="Script" path="res://EnemyPath.gd" id="5_885ug"]
 [ext_resource type="Script" path="res://Bank.gd" id="8_d6424"]
+[ext_resource type="PackedScene" uid="uid://di3hexqm4y8x4" path="res://UI/victory_layer.tscn" id="10_i4sm6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwvmm"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -145,5 +146,9 @@ size_flags_horizontal = 0
 size_flags_vertical = 0
 text = "Sample Text"
 label_settings = SubResource("LabelSettings_s13n6")
+
+[node name="VictoryLayer" parent="." instance=ExtResource("10_i4sm6")]
+unique_name_in_owner = true
+visible = false
 
 [connection signal="timeout" from="EnemyPath/EnemySpawnTimer" to="EnemyPath" method="_on_enemy_spawn_timer_timeout"]
