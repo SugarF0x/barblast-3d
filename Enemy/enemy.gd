@@ -1,8 +1,10 @@
+class_name Enemy
 extends PathFollow3D
 
 
 @export_range(1.0,10.0) var speed := 5.0
 @export var bounty := 15
+@export var max_health := 2
 
 
 @onready var base = get_tree().get_first_node_in_group("base")
@@ -14,6 +16,12 @@ extends PathFollow3D
 func _process(delta: float) -> void:
 	progress += speed * delta
 	if progress_ratio == 1.0: attack()
+
+func _setup(health: int, bounty: int, speed: float) -> void:
+	health_component.max_health = health
+	health_component.health = health
+	self.speed = speed
+	self.bounty = bounty
 
 
 func attack():
