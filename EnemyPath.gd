@@ -28,4 +28,4 @@ func set_timer() -> void: enemy_spawn_timer.start(difficulty_manager.get_spawn_t
 
 func _on_enemy_spawn_timer_timeout() -> void: 
 	spawn_enemy()
-	set_timer()
+	if difficulty_manager.get_enemy_difficulty() < 1: set_timer()
