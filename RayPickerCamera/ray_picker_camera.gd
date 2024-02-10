@@ -3,9 +3,11 @@ extends Camera3D
 
 @export var grid_map: GridMap
 @export var turret_manager: Node3D
+@export var turret_cost := 100
 
 
 @onready var ray_cast_3d: RayCast3D = $RayCast3D
+@onready var bank = get_tree().get_first_node_in_group("bank")
 
 
 func _process(delta: float) -> void:
@@ -27,6 +29,9 @@ func _process(delta: float) -> void:
 
 
 func build_turret(cell: Vector3) -> void:
+	if bank.gold < turret_cost: return
+	
+	bank.gold -= turret_cost
 	grid_map.set_cell_item(cell, 1)
 	turret_manager.build_turret(grid_map.map_to_local(cell))
 
