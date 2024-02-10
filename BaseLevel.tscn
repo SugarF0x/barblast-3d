@@ -124,9 +124,11 @@ wait_time = 2.0
 one_shot = true
 
 [node name="Base" parent="." instance=ExtResource("3_jojtq")]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, 6)
 
 [node name="Bank" type="MarginContainer" parent="." groups=["bank"]]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

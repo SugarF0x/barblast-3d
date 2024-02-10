@@ -6,7 +6,9 @@ extends Path3D
 
 
 @onready var enemy_spawn_timer: Timer = %EnemySpawnTimer
-@onready var victory_layer: CanvasLayer = %VictoryLayer
+@onready var victory_layer: VictoryLayer = %VictoryLayer
+@onready var base: Base = %Base
+@onready var bank: Bank = %Bank
 
 
 func _ready() -> void:
@@ -36,5 +38,6 @@ func _on_enemy_spawn_timer_timeout() -> void:
 
 func _on_enemy_defeated() -> void:
 	if not enemy_spawn_timer.is_stopped(): return
+	if not get_children().all(func(child): return not child is PathFollow3D): return
 	
-	if get_children().all(func(child): return not child is PathFollow3D): victory_layer.visible = true
+	victory_layer.victory(true, base.get_health_ratio() == 1, bank.gold >= 300)

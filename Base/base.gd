@@ -1,3 +1,4 @@
+class_name Base
 extends Node3D
 
 
@@ -16,6 +17,8 @@ func sync_label():
 func take_damage(value: int) -> void: 
 	health_component.damage(value)
 	sync_label()
+
+func get_health_ratio() -> float: return health_component.health / health_component.max_health
 
 
 func _on_health_component_death() -> void: get_tree().reload_current_scene()
