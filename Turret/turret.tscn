@@ -1,21 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dlmltvgusbij4"]
+[gd_scene load_steps=8 format=3 uid="uid://dlmltvgusbij4"]
 
 [ext_resource type="PackedScene" uid="uid://c7jn1aea5mdfe" path="res://Turret/projectile.tscn" id="1_ai42u"]
 [ext_resource type="Script" path="res://Turret/turret.gd" id="1_fhnta"]
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_j646k"]
-height = 0.6
-
-[sub_resource type="CylinderMesh" id="CylinderMesh_3gby5"]
-top_radius = 0.6
-bottom_radius = 0.6
-height = 0.6
-
-[sub_resource type="BoxMesh" id="BoxMesh_5o3kg"]
-size = Vector3(0.8, 0.4, 0.4)
-
-[sub_resource type="BoxMesh" id="BoxMesh_gdfwg"]
-size = Vector3(0.4, 0.2, 0.4)
+[ext_resource type="PackedScene" uid="uid://c4c0e522wcbr8" path="res://Assets/TurretBase.glb" id="3_n88r2"]
+[ext_resource type="PackedScene" uid="uid://clivof26xh3bx" path="res://Assets/Cannon.glb" id="4_ehold"]
 
 [sub_resource type="Animation" id="Animation_6hfgg"]
 resource_name = "Fire"
@@ -23,14 +11,26 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Base/Top/Visor/Barrel:position")
+tracks/0/path = NodePath("TurretBase/CannonGizmo/Cannon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.6),
-"transitions": PackedFloat32Array(0.189465, 1, 1),
+"times": PackedFloat32Array(0, 0.2, 0.3, 0.6),
+"transitions": PackedFloat32Array(0.2, 1, 1, 1),
 "update": 0,
-"values": [Vector3(0, 0, 0.4), Vector3(0, 0, 0.1), Vector3(0, 0, 0.4)]
+"values": [Vector3(0, 2.1495, 0), Vector3(0, 2.15, -0.2), Vector3(0, 2.15, -0.2), Vector3(0, 2.1495, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TurretBase/CannonGizmo/Cannon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.3),
+"transitions": PackedFloat32Array(0.4, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.174533, 0, 0), Vector3(0, 0, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_22uqc"]
@@ -38,14 +38,26 @@ length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Base/Top/Visor/Barrel:position")
+tracks/0/path = NodePath("TurretBase/CannonGizmo/Cannon:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector3(0, 0, 0.4)]
+"values": [Vector3(0, 2.1495, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TurretBase/CannonGizmo/Cannon:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kmobn"]
@@ -58,22 +70,17 @@ _data = {
 script = ExtResource("1_fhnta")
 projectile_scene = ExtResource("1_ai42u")
 
-[node name="Base" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
-mesh = SubResource("CylinderMesh_j646k")
+[node name="TurretBase" parent="." instance=ExtResource("3_n88r2")]
 
-[node name="Top" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
-mesh = SubResource("CylinderMesh_3gby5")
-
-[node name="Visor" type="MeshInstance3D" parent="Base/Top"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5)
-mesh = SubResource("BoxMesh_5o3kg")
-
-[node name="Barrel" type="MeshInstance3D" parent="Base/Top/Visor"]
+[node name="CannonGizmo" type="Node3D" parent="TurretBase"]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.4)
-mesh = SubResource("BoxMesh_gdfwg")
+
+[node name="Cannon" parent="TurretBase/CannonGizmo" instance=ExtResource("4_ehold")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.1495, 0)
+
+[node name="CannonNozzle" type="Node3D" parent="TurretBase/CannonGizmo/Cannon"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.796127, 0.986121)
 
 [node name="FireRateTimer" type="Timer" parent="."]
 autostart = true

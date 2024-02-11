@@ -13,7 +13,6 @@ extends Path3D
 
 func _ready() -> void:
 	set_timer()
-	Engine.time_scale = 5
 
 
 func spawn_enemy() -> void: 
