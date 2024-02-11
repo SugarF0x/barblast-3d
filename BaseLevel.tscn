@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://drh3kj7778ibt"]
+[gd_scene load_steps=20 format=3 uid="uid://drh3kj7778ibt"]
 
 [ext_resource type="PackedScene" uid="uid://b30dvd4ye2sv3" path="res://RayPickerCamera/ray_picker_camera.tscn" id="1_33bfw"]
 [ext_resource type="PackedScene" uid="uid://b4ykk1i4fn341" path="res://DifficultyManager/difficulty_manager.tscn" id="1_gac54"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dlmltvgusbij4" path="res://Turret/turret.tscn" id="4_enpy5"]
 [ext_resource type="Script" path="res://EnemyPath.gd" id="5_885ug"]
 [ext_resource type="Script" path="res://Bank.gd" id="8_d6424"]
+[ext_resource type="FontFile" uid="uid://cmi0owcroepcb" path="res://Assets/fonts/Asap/static/Asap-Bold.ttf" id="9_6ckwm"]
 [ext_resource type="PackedScene" uid="uid://di3hexqm4y8x4" path="res://UI/victory_layer.tscn" id="10_i4sm6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_mwvmm"]
@@ -36,6 +37,9 @@ point_count = 9
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fsm4n"]
 albedo_color = Color(0.360784, 0.360784, 0.360784, 1)
+
+[sub_resource type="Theme" id="Theme_qv5h7"]
+default_font = ExtResource("9_6ckwm")
 
 [sub_resource type="LabelSettings" id="LabelSettings_s13n6"]
 font_size = 64
@@ -140,6 +144,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 8
 mouse_filter = 2
+theme = SubResource("Theme_qv5h7")
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16

@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://di3hexqm4y8x4"]
+[gd_scene load_steps=6 format=3 uid="uid://di3hexqm4y8x4"]
 
 [ext_resource type="Script" path="res://UI/victory_layer.gd" id="1_jas1b"]
+[ext_resource type="FontFile" uid="uid://cmi0owcroepcb" path="res://Assets/fonts/Asap/static/Asap-Bold.ttf" id="2_csbdc"]
 [ext_resource type="Texture2D" uid="uid://c3n0ukwbppr5e" path="res://Assets/star.png" id="2_x53xu"]
+
+[sub_resource type="Theme" id="Theme_qv5h7"]
+default_font = ExtResource("2_csbdc")
 
 [sub_resource type="LabelSettings" id="LabelSettings_53ypn"]
 font_size = 96
@@ -23,6 +27,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_qv5h7")
 
 [node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
 custom_minimum_size = Vector2(400, 400)
