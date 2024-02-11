@@ -2,9 +2,7 @@
 
 [ext_resource type="Script" path="res://Base/base.gd" id="1_l44r1"]
 [ext_resource type="PackedScene" uid="uid://b7eurym5yvwbn" path="res://components/HealthComponent.tscn" id="2_jll3i"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_us0s8"]
-albedo_color = Color(0.886275, 0, 0.0196078, 1)
+[ext_resource type="PackedScene" uid="uid://ccset7yjenmui" path="res://Assets/Base.glb" id="3_fu3yl"]
 
 [node name="Base" type="Node3D" groups=["base"]]
 script = ExtResource("1_l44r1")
@@ -12,18 +10,14 @@ script = ExtResource("1_l44r1")
 [node name="HealthComponent" parent="." instance=ExtResource("2_jll3i")]
 max_health = 5
 
-[node name="Model" type="CSGCylinder3D" parent="."]
-radius = 2.0
-height = 4.0
-sides = 32
-material = SubResource("StandardMaterial3D_us0s8")
-
 [node name="HealthLabel" type="Label3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6, 0)
 billboard = 1
 modulate = Color(0.886275, 0, 0.0196078, 1)
 text = "10"
 font_size = 500
 outline_size = 100
+
+[node name="Base" parent="." instance=ExtResource("3_fu3yl")]
 
 [connection signal="death" from="HealthComponent" to="." method="_on_health_component_death"]
