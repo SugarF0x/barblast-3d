@@ -125,7 +125,7 @@ one_shot = true
 
 [node name="Base" parent="." instance=ExtResource("3_jojtq")]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 2, 6)
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 18, 0, 6)
 
 [node name="Bank" type="MarginContainer" parent="." groups=["bank"]]
 unique_name_in_owner = true
